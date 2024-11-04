@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { useEffect, useState, useContext, useRef } from "react"
 import ThemeToggler from "./ThemeToggler"
 import { AuthContext } from "@/context/AuthContext"
-import Logo from "./Logo"
+import Logo from "@/components/Header/Logo"
 import { Button } from "@nextui-org/react"
 
 const Header = () => {

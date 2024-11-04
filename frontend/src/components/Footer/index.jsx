@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
-import Logo from "../Header/Logo"
+import Logo from "@/components/Header/Logo"
 
 const Footer = () => {
   return (

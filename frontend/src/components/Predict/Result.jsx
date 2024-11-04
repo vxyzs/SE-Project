@@ -20,7 +20,7 @@ const PredictionResult = ({ predictionResult, loading }) => {
             animationData={animationDataload}
             style={{ height: '150px', width: '150px' }}
           />
-          <p className="text-gray-800 dark:text-gray-200">Loading user data...</p>
+          <p className="text-gray-800 dark:text-gray-200">Predicting...</p>
         </div>
       </section>
 

@@ -16,7 +16,12 @@ const Predict = () => {
       setLoading(false)
     }, 3000) 
     if (resultRef.current) {
-      resultRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const navbarHeight = 70; // Adjust this value based on your navbar height
+      const elementPosition = resultRef.current.getBoundingClientRect().top + window.scrollY; // Get the position of the element
+      window.scrollTo({
+        top: elementPosition - navbarHeight, // Scroll to the adjusted position
+        behavior: 'smooth'
+      });
     }
   };
 

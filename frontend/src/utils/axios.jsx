@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8000/api', // Change to your backend URL
+    baseURL: 'https://se-project-e9zy.onrender.com/api', // Change to your backend URL
     withCredentials: true, // Important for sending cookies
 });
 

@@ -31,7 +31,7 @@ const SigninPage = () => {
         router.push("/")
       } catch (error) {
         console.error("Signin failed", error);
-        toast.error("Signin failed")
+        toast.error(error.response.data.detail)
       } finally {
         setLoading(false)
       }

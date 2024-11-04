@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import Chart1 from "@/components/Chart1";
+import Chart1 from "@/components/chart1"
 
 const AboutSectionTwo = () => {
   return (

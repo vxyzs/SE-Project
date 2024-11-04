@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import Chart from "@/components/Chart1"
+import Chart1 from "@/components/Chart1";
 
 const AboutSectionTwo = () => {
   return (
@@ -9,7 +9,7 @@ const AboutSectionTwo = () => {
         <div className="-mx-4 flex flex-wrap items-center">
           <div className="hidden lg:flex lg:w-1/2 lg:pl-4"> 
             <div className="rounded-lg border border-gray-300 bg-white bg-opacity-30 p-5 shadow-md dark:bg-gray-800 w-full">
-                <Chart /> 
+                <Chart1 /> 
             </div>
           </div>
           <div className="w-full px-8 lg:w-1/2">

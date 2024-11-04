@@ -46,10 +46,7 @@ const data = [
   },
 ];
 
-export default class Example extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/p/sandbox/line-chart-width-xaxis-padding-8v7952';
-
-  render() {
+export default function Chart1() {
     return (
     <div className='h-96'>
       <ResponsiveContainer width="100%" height="100%">
@@ -75,5 +72,4 @@ export default class Example extends PureComponent {
       </ResponsiveContainer>
       </div>
     );
-  }
 }

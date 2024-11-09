@@ -4,6 +4,7 @@ import ScrollUp from "@/components/Common/ScrollUp"
 import Features from "@/components/Features"
 import Hero from "@/components/Hero"
 import Video from "@/components/Video"
+import ChatModal from "@/components/Chat/ChatModal"
 
 export const metadata = {
   title: "Home"
@@ -14,9 +15,10 @@ export default function Home() {
   return (
     <>
       <ScrollUp />
+      <ChatModal />
       <Hero />
       <Features />
-      <Video />
+      {/* <Video /> */}
       <AboutSectionOne />
       <AboutSectionTwo />
     </>

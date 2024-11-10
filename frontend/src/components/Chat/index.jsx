@@ -10,6 +10,7 @@ import {
   CardHeader,
   Divider,
   Tooltip,
+  Avatar,
 } from "@nextui-org/react";
 import ReactMarkdown from "react-markdown";
 import { Send, X } from "lucide-react";
@@ -83,33 +84,44 @@ const ChatApp = ({ setIsChatOpen, isChatOpen }) => {
       <CardHeader className="flex flex-row items-center">
         {/* <CardTitle>Chat with us</CardTitle> */}
         <Tooltip content="If you close, you will lose the chat" delay={500}>
-        <Button variant="ghost" className="ml-auto" onClick={toggleChat}>
+        <Button variant="light" className="ml-auto" onClick={toggleChat}>
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
         </Button>
         </Tooltip>
       </CardHeader>
-      <CardBody className="h-64 overflow-y-auto" >
-        {messages.map((msg, index) => (
+      <CardBody className="h-64 overflow-y-auto">
+      {messages.map((msg, index) => (
+        <div
+          key={index}
+          className={`flex items-start ${
+            msg.role === "user" ? "justify-end" : ""
+          } m-1`}
+        >
+          {msg.role !== "user" && (
+            <Avatar
+              size='sm'
+              className="mr-1 bg-gradient-to-r from-blue-800 to-teal-400 hover:from-blue-900 hover:to-teal-500 dark:from-blue-500 dark:to-teal-300 dark:hover:from-blue-600 dark:hover:to-teal-400 duration-300 ease-in-out"
+            />
+          )}
           <div
-            key={index}
-            className={`m-1 rounded-xl p-3 ${
+            className={`rounded-xl p-3 ${
               msg.role === "user"
-                ? "ml-auto w-fit self-end bg-blue-500 text-right text-white" // Aligns to the right
-                : "mr-auto max-w-[70%] self-start bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white" // Aligns to the left
+                ? "ml-auto w-fit self-end bg-blue-500 text-right text-white"
+                : "mr-auto max-w-[70%] self-start bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white"
             }`}
             style={{
               borderRadius:
                 msg.role === "user"
-                  ? "20px 20px 0px 20px"
-                  : "20px 20px 20px 0px",
+                  ? "20px 0px 20px 20px"
+                  : "0px 20px 20px 20px",
             }}
-            useRef={chatContainerRef}
+            ref={msg.role !== "user" ? chatContainerRef : null} // Use the ref only for bot messages
           >
-            <strong>{msg.role === "user" ? "" : "Bot\n"}</strong>
             <ReactMarkdown>{msg.content}</ReactMarkdown>
           </div>
-        ))}
+        </div>
+      ))}
       </CardBody>
       <Divider />
       <CardFooter>

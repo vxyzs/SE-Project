@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 import {NextUIProvider} from "@nextui-org/react";
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 import { Toaster } from 'react-hot-toast';
+import ChatWidget from "@/components/Chat/ChatModal"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
             reverseOrder={false}
           />
           {children}
+          <ChatWidget />
           <Footer />
           <ScrollToTop />
           </NextUIProvider>

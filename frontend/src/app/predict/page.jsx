@@ -1,5 +1,6 @@
 import Breadcrumb from "@/components/Common/Breadcrumb"
 import Predict from "@/components/Predict"
+import ChatModal from "@/components/Chat/ChatModal"
 
 export const metadata = {
   title: "Real Estate Price Prediction | Predict Property Prices",
@@ -13,7 +14,6 @@ const PredictPage = () => {
       <Breadcrumb
         pageName="Predict Price"
       />
-
       <Predict />
     </>
   )

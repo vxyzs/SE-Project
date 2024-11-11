@@ -25,12 +25,12 @@ class Login(APIView):
         
         payload = {
             'id': user.id,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=1440),
-            'iat': datetime.datetime.utcnow()
+            'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(minutes=1),
+            'iat': datetime.datetime.now(datetime.timezone.utc)
         }
         token = jwt.encode(payload, 'secret', algorithm='HS256')
         response = Response()
-        response.set_cookie(key='jwt', value=token, httponly=True)
+        response.set_cookie(key='jwt', value=token, httponly=True, expires=payload['exp'])
         response.data = {
             'jwt': token
         }
@@ -38,17 +38,26 @@ class Login(APIView):
     
 class User(APIView):
     def get(self, request):
-        token = request.COOKIES.get('jwt')
+        auth_header = request.headers.get('Authorization')
+        if not auth_header:
+            raise AuthenticationFailed('Authorization header missing')
 
+        token = auth_header.split(' ')[1] if ' ' in auth_header else None
         if not token:
-            raise AuthenticationFailed('Unauthenticated!')
-        
+            raise AuthenticationFailed('Invalid token format')
+
         try:
+            # Decode the token
             payload = jwt.decode(token, 'secret', algorithms=['HS256'])
         except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Unauthenticated!')
-        
+            raise AuthenticationFailed('Token has expired, please log in again')
+        except jwt.InvalidTokenError:
+            raise AuthenticationFailed('Invalid token, please log in again')
+
         user = CustomUser.objects.filter(id=payload['id']).first()
+        if not user:
+            raise AuthenticationFailed('User not found')
+
         serializer = UserSerializer(user)
         return Response(serializer.data)
     

@@ -40,7 +40,7 @@ const ChatApp = ({ setIsChatOpen, isChatOpen }) => {
     const stream = client.chatCompletionStream({
       model: "Qwen/Qwen2.5-72B-Instruct",
       messages: [userMessage],
-      temperature: 0.5,
+      temperature: 0.4,
       max_tokens: 512,
       top_p: 0.7,
     });
